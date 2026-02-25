@@ -27,7 +27,7 @@
 							<td><?= $row->nama_kategori; ?></td>
 							<td><?= $row->lokasi; ?></td>
 							<td><?= $row->ket; ?></td>
-							<td><?= $row->tanggal; ?></td>
+							<td><?= date('d-m-Y', strtotime($row->tanggal)); ?></td>
 							<td>
 								<a href="<?= base_url(); ?>Pelaporan/detail/<?= $row->id_pelaporan; ?>" class="btn btn-primary btn-sm">Lihat</a>
 							</td>

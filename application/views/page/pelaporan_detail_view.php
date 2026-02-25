@@ -32,12 +32,12 @@
               </thead>
               <tbody>
                 <?php foreach ($aspirasi as $a): ?>
-                <tr>
-                  <td><?= $a->tanggal; ?></td>
-                  <td><?= $a->feedback; ?></td>
-                  <td><?= $a->status; ?>
-                  </td>
-                </tr>
+                  <tr>
+                    <td><?= date('d/m/Y', strtotime($a->tanggal)); ?></td>
+                    <td><?= $a->feedback; ?></td>
+                    <td><?= $a->status; ?>
+                    </td>
+                  </tr>
                 <?php endforeach; ?>
               </tbody>
             </table>

@@ -12,10 +12,11 @@
 				<thead>
 					<tr>
 						<th style="width: 10px">No</th>
-						<th>Id Aspirasi</th>
-						<th>Status</th>
-						<th>Id Kategori</th>
-						<th>Feedback</th>
+						<th>Nama Kategori</th>
+						<th>Lokasi</th>
+						<th>Keterangan</th>
+						<th>Tanggal</th>
+						<th>Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -23,10 +24,13 @@
 					<?php foreach ($data as $row): ?>
 						<tr>
 							<td><?= $no; ?></td>
-							<td><?= $row->id_aspirasi; ?></td>
-							<td><?= $row->status; ?></td>
-							<td><?= $row->id_pelaporan; ?></td>
-							<td><?= $row->feedback; ?></td>
+							<td><?= $row->nama_kategori; ?></td>
+							<td><?= $row->lokasi; ?></td>
+							<td><?= $row->ket; ?></td>
+							<td><?= date('d-m-Y', strtotime($row->tanggal)); ?></td>
+							<td>
+								<a href="<?= base_url(); ?>Aspirasi/detail/<?= $row->id_pelaporan; ?>" class="btn btn-primary btn-sm">Lihat</a>
+							</td>
 						</tr>
 						<!-- /.modal -->
 						<?php $no++; ?>
@@ -52,10 +56,10 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form action="<?= base_url(); ?>Pelaporan/add" method="post">
+			<form action="<?= base_url(); ?>Aspirasi/add" method="post">
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="exampleInputEmail1">Pilih Kategori</label>
+						<label for="kategori">Pilih Kategori</label>
 						<select name="kategori" class="custom-select form-control-border" id="exampleSelectBorder">
 							<?php foreach ($kategori as $row): ?>
 								<option value="<?= $row->id_kategori; ?>"><?= $row->nama_kategori; ?></option>
@@ -63,12 +67,12 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">Lokasi</label>
+						<label for="lokasi">Lokasi</label>
 						<input type="text" name="lokasi" class="form-control" required>
 						<input type="hidden" name="nis" class="form-control" value="<?= $this->session->userdata('id'); ?>" required>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1">Keterangan</label>
+						<label for="keterangan">Keterangan</label>
 						<textarea class="form-control" rows="3" placeholder="Enter ..." name="keterangan" required></textarea>
 					</div>
 				</div>
