@@ -47,6 +47,7 @@ class Pelaporan extends CI_Controller
 		$data['menu'] = "m5";
 		$data['view'] = 'page/pelaporan_detail_view';
 		$data['data'] = $this->model->read_by_id($id);
+		$data['aspirasi'] = $this->model->read_aspirasi($id);
 		$data['kategori'] = $this->kategorimodel->read_all();
 		$this->load->view('template', $data);
 	}

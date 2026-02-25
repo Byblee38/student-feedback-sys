@@ -59,7 +59,7 @@
                 <a href="<?= base_url(); ?>SiswaAuth/logout" class="btn btn-default btn-flat">Keluar</a>
                 <?php } ?>
               </center>
-            </li>a
+            </li>
           </ul>
       </li>
       <li class="nav-item">

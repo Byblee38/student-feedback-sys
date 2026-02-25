@@ -35,7 +35,7 @@ class Aspirasi extends CI_Controller {
             'kelas' => $this->input->post('kelas'),
             'jenis_kelamin' => $this->input->post('jenis_kelamin')
         );
-        $this->siswa->edit($old_nis, $data);
+        $this->model->edit($old_nis, $data);
         redirect('siswa');
     }
 
@@ -45,7 +45,7 @@ class Aspirasi extends CI_Controller {
     }
 
     public function api(){
-        $data = $this->siswa->read_all();
+        $data = $this->model->read_all();
         echo json_encode($data);
     }
 }

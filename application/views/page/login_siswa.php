@@ -52,6 +52,13 @@
     </div>
     <!-- /.login-card-body -->
   </div>
+
+  <div class="mt-5">
+    <p class="text-center">
+      Anda Guru?
+      <a href="<?= base_url(); ?>AdminAuth">Silahkan Login di sini</a>
+    </p>
+  </div>
 </div>
 <!-- /.login-box -->
 

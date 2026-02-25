@@ -13,19 +13,19 @@ class PelaporanModel extends CI_Model {
         $this->db->join('kategori AS k', 'k.id_kategori = i.id_kategori');
         $this->db->join('aspirasi AS a', 'a.id_pelaporan = i.id_pelaporan', 'left');
         $this->db->group_by('i.id_pelaporan');
-        $this->db->order_by('i.nis', 'DESC');
+        $this->db->order_by('i.tanggal', 'DESC');
         $query = $this->db->get();
         return $query->result();
         
     }
 
-    public function read_by_nis($nis)
+    public function read_by_tanggal($tanggal)
     {
         $this->db->select('i.*, k.nama_kategori, ifnull(a.status, "Menunggu") AS status');
         $this->db->from('input_aspirasi AS i');
         $this->db->join('kategori AS k', 'k.id_kategori = i.id_kategori');
         $this->db->join('aspirasi AS a', 'a.id_pelaporan = i.id_pelaporan', 'left');
-        $this->db->where('i.nis', $nis);
+        $this->db->where('i.tanggal', $tanggal);
         $this->db->order_by('i.tanggal', 'DESC');
         $query = $this->db->get();
         return $query->result();
@@ -52,5 +52,16 @@ class PelaporanModel extends CI_Model {
     {
         $this->db->where('id_pelaporan', $id);
         return $this->db->delete('input_aspirasi');
+    }
+
+    public function read_aspirasi($id)
+    {   
+        $this->db->where('id_pelaporan', $id);
+        $query = $this->db->get('aspirasi');
+        return $query->result();
+    }
+
+    public function add_aspirasi($data){
+        return $this->db->insert('aspirasi', $data);
     }
 }

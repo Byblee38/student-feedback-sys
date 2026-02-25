@@ -52,6 +52,13 @@
     </div>
     <!-- /.login-card-body -->
   </div>
+
+  <div class="mt-5">
+    <p class="text-center">
+      Anda Siswa?
+      <a href="<?= base_url(); ?>SiswaAuth">Silahkan Login di sini</a>
+    </p>
+  </div>
 </div>
 <!-- /.login-box -->
 
