@@ -262,3 +262,7 @@ $config['base_url'] = 'http://localhost/web-rpl-bc/';
 | ----- | ----- | -------------------------------------------------------------------- |
 | Admin | `1`   | Dashboard admin, manajemen siswa, kategori, aspirasi, dan akun admin |
 | Siswa | `2`   | Halaman pelaporan pribadi, input laporan baru, lihat status          |
+
+---
+
+Developed by : [Bayu Kresna Mukti](https://github.com/Byblee38)
