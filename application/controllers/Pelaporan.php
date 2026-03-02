@@ -15,11 +15,18 @@ class Pelaporan extends CI_Controller
 
 	public function index()
 	{
-		$data['menu'] = "m5";
-		$data['view'] = 'page/pelaporan_view';
-		$data['data'] = $this->model->read_all();
-		$data['kategori'] = $this->kategorimodel->read_all();
-		$this->load->view('template', $data);
+		if (
+			$this->session->userdata('logged_in') == true && $this->session->userdata('role') == 2
+		) {
+			$data['menu'] = "m5";
+			$data['view'] = 'page/pelaporan_view';
+			$data['data'] = $this->model->read_all();
+			$data['title'] = "Pelaporan";
+			$data['kategori'] = $this->kategorimodel->read_all();
+			$this->load->view('template', $data);
+		} else {
+			redirect('AdminAuth');
+		}
 	}
 
 	public function add()

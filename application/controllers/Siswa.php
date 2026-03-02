@@ -1,22 +1,31 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Siswa extends CI_Controller {
+class Siswa extends CI_Controller
+{
 
-	public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
         $this->load->helper(array('url'));
         $this->load->model('SiswaModel', 'siswamodel');
     }
 
-     public function index(){
-        $data['menu'] = "m3";
-        $data['view'] = 'page/siswa_view';
-        $data['data'] = $this->siswamodel->read_all();
-        $this->load->view('template', $data);
+    public function index()
+    {
+        if ($this->session->userdata('role') == 1 && $this->session->logged_in == true) {
+            $data['menu'] = "m3";
+            $data['view'] = 'page/siswa_view';
+            $data['title'] = "Siswa";
+            $data['data'] = $this->siswamodel->read_all();
+            $this->load->view('template', $data);
+        } else {
+            redirect('AdminAuth');
+        }
     }
 
-    public function add(){
+    public function add()
+    {
         $data = array(
             'nis' => $this->input->post('nis'),
             'nama' => $this->input->post('nama'),
@@ -27,7 +36,8 @@ class Siswa extends CI_Controller {
         redirect('siswa');
     }
 
-    public function edit(){
+    public function edit()
+    {
         $old_nis = $this->input->post('old_nis');
         $data = array(
             'nis' => $this->input->post('nis'),
@@ -39,12 +49,14 @@ class Siswa extends CI_Controller {
         redirect('siswa');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $this->siswamodel->delete($id);
         redirect('siswa');
     }
 
-    public function api(){
+    public function api()
+    {
         $data = $this->siswamodel->read_all();
         echo json_encode($data);
     }

@@ -15,11 +15,16 @@ class Aspirasi extends CI_Controller
 
     public function index()
     {
-        $data['menu'] = "m1";
-        $data['view'] = 'page/aspirasi_view';
-        $data['data'] = $this->model->read_all();
-        $data['kategori'] = $this->kategorimodel->read_all();
-        $this->load->view('template', $data);
+        if ($this->session->userdata('role') == 1  && $this->session->userdata('logged_in') == true) {
+            $data['menu'] = "m1";
+            $data['view'] = 'page/aspirasi_view';
+            $data['title'] = "Aspirasi";
+            $data['data'] = $this->model->read_all();
+            $data['kategori'] = $this->kategorimodel->read_all();
+            $this->load->view('template', $data);
+        } else {
+            redirect('AdminAuth');
+        }
     }
 
     public function add()

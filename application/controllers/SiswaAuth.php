@@ -1,21 +1,31 @@
 <?php
-class SiswaAuth extends CI_Controller {
-    public function __construct() {
+class SiswaAuth extends CI_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
         $this->load->helper(array('url'));
         $this->load->model('SiswaModel', 'model');
     }
 
-    public function index() {
-        $this->load->view('page/login_siswa');
+    public function index()
+    {
+        if ($this->session->userdata('role') == 2 && $this->session->userdata('logged_in') == true) {
+            redirect('pelaporan');
+        } else if ($this->session->userdata('role') == 1 && $this->session->userdata('logged_in') == true) {
+            redirect('admin');
+        } else {
+            $this->load->view('page/login_siswa');
+        }
     }
 
-    public function login_action() {
+    public function login_action()
+    {
         $nis = $this->input->post('nis');
         $kelas = $this->input->post('kelas');
         $result = $this->model->login($nis, $kelas);
 
-        if($result) {
+        if ($result) {
             $session_data = array(
                 'id' => $result->nis,
                 'nama' => $result->nama,
@@ -29,7 +39,8 @@ class SiswaAuth extends CI_Controller {
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         $this->session->sess_destroy(); // Menghapus session
         redirect('SiswaAuth');
     }
