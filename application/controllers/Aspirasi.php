@@ -51,6 +51,7 @@ class Aspirasi extends CI_Controller
         $data['menu'] = "m1";
         $data['view'] = 'page/aspirasi_detail_view';
         $data['data'] = $this->model->read_by_id($id);
+        $data['title'] = "Aspirasi";
         $data['aspirasi'] = $this->model->read_aspirasi($id);
         $data['kategori'] = $this->kategorimodel->read_all();
         $this->load->view('template', $data);
