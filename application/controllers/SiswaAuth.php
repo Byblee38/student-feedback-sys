@@ -32,9 +32,10 @@ class SiswaAuth extends CI_Controller
                 'role' => 2,
                 'logged_in' => TRUE
             );
-            $this->session->set_userdata($session_data); // Menyimpan session
+            $this->session->set_userdata($session_data);
             redirect('pelaporan');
         } else {
+            $this->session->set_flashdata('error', 'NIS atau Kelas salah');
             redirect('SiswaAuth');
         }
     }

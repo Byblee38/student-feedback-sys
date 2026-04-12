@@ -35,6 +35,7 @@ class AdminAuth extends CI_Controller
             $this->session->set_userdata($session_data); // Menyimpan session
             redirect('admin');
         } else {
+            $this->session->set_flashdata('error', 'Username atau Password salah');
             redirect('AdminAuth');
         }
     }

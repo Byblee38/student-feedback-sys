@@ -38,42 +38,40 @@
         <li class="nav-item dropdown user-menu">
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
             <img src="<?= base_url(); ?>assets/dist/img/user1-128x128.jpg" class="user-image img-circle elevation-2" alt="User Image">
-            <span class="d-none d-md-inline"><?= $this->session->userdata('nama'); ?></span>
+            <span class="d-none d-md-inline font-weight-bold"><?= $this->session->userdata('nama'); ?> <i class="fas fa-angle-down ml-1"></i></span>
           </a>
-          <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right shadow-lg border-0">
             <!-- User image -->
-            <li class="user-header bg-primary">
-              <img src="<?= base_url(); ?>assets/dist/img/user1-128x128.jpg" class="img-circle elevation-2" alt="User Image">
+            <li class="user-header bg-gradient-primary pb-4">
+              <img src="<?= base_url(); ?>assets/dist/img/user1-128x128.jpg" class="img-circle elevation-3 mb-2" alt="User Image">
 
-              <p>
+              <p class="mb-0 text-lg">
                 <?= $this->session->userdata('nama'); ?>
-                <small>
-                  <?= $this->session->userdata('username'); ?>
-                </small>
               </p>
+              <small class="d-block mt-2">
+                <span class="badge badge-light px-2 py-1 text-primary shadow-sm">
+                  <?php if ($this->session->userdata('role') == 1): ?>
+                    <i class="fas fa-user-shield mr-1"></i> Admin (<?= $this->session->userdata('username'); ?>)
+                  <?php else: ?>
+                    <i class="fas fa-user-graduate mr-1"></i> Siswa
+                  <?php endif; ?>
+                </span>
+              </small>
             </li>
             <!-- Menu Body -->
             <!-- Menu Footer-->
-            <li class="user-footer">
-              <center>
-                <?php if ($this->session->userdata('role') == 1 || $this->session->userdata('role') == 2) { ?>
-                  <a href="<?= base_url(); ?>AdminAuth/logout" class="btn btn-default btn-flat">Keluar</a>
-                <?php } else { ?>
-                  <a href="<?= base_url(); ?>SiswaAuth/logout" class="btn btn-default btn-flat">Keluar</a>
-                <?php } ?>
-              </center>
+            <li class="user-footer bg-light p-3">
+              <?php if ($this->session->userdata('role') == 1) { ?>
+                <a href="<?= base_url(); ?>AdminAuth/logout" class="btn btn-danger btn-block rounded-pill font-weight-bold shadow-sm d-flex justify-content-center align-items-center">
+                  <i class="fas fa-sign-out-alt mr-2 text-white"></i> <span class="text-white">Keluar</span>
+                </a>
+              <?php } else { ?>
+                <a href="<?= base_url(); ?>SiswaAuth/logout" class="btn btn-danger btn-block rounded-pill font-weight-bold shadow-sm d-flex justify-content-center align-items-center">
+                  <i class="fas fa-sign-out-alt mr-2 text-white"></i> <span class="text-white">Keluar</span>
+                </a>
+              <?php } ?>
             </li>
           </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-            <i class="fas fa-expand-arrows-alt"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-            <i class="fas fa-th-large"></i>
-          </a>
         </li>
       </ul>
     </nav>

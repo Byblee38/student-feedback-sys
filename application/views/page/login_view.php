@@ -41,6 +41,9 @@
             </div>
           </div>
         </div>
+        <?php if($this->session->flashdata('error')): ?>
+          <p class="text-center mb-2 mt-0 text-danger"><?= $this->session->flashdata('error'); ?></p>
+        <?php endif; ?>
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
